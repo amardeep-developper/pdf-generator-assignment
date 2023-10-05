@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Generator</title>
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <!-- Include Google Charts library -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    // Load Google Charts
+    google.charts.load('current', { packages: ['corechart'] });
+  </script>
+  <style>
+    body {
+        background-color: aliceblue;
+        margin: inherit;
+    }
+    header {
+        background-color: #E8EEFB;
+        color: #1463FF;
+        margin: inherit;
+        font-family: poppins;
+        font-weight: 1000;
+        font-size: 10px;
+        line-height: 18px;
+        padding: 1px;
+    }
+    hr {
+        color: #E3E7F1;
+        background-color: #E3E7F1;
+        border: none;
+        width: 96%;
+        height: 2px;
+    }
+    main {
+        margin: 10px;
+    }
+    .container {
+        padding: 1px;
+        margin: 5px;
+        background-color: white;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        min-height: 100px;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .chartWrapper {
+        width: 95%;
+       
+    }
+
+    .chartContainer {
+        display: flex;
+        min-height: 50px;
+        flex-direction: row;
+        /* flex-grow: 1; */
+        width: 100%;
+    }
+
+    .stat {
+        color: #090E24;
+        font-family: poppins;
+        font-weight: 1000;
+        font-size: 16px;
+        line-height: 18px;
+    }
+
+    .stat-heading {
+        color: #090E24;
+        font-family: poppins;
+        font-weight: 1000;
+        font-size: 16px;
+        line-height: 18px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="margin: inherit; padding: 5px;">Market Insights</h1>
+  </header>
+  <main>
+    <section class="container">
+        <p class="stat-heading">Market Insights</p>
+        <div class="chartWrapper">
+            <p class="stat-heading">Sales vs list price</p>
+            <div class="chartContainer">
+                <p class="stat">98%</p>
+                <div style="width: 90%;height: 100px;" id="salesChart"></div>
+                <p class="stat" >103.2%</p>
+            </div>
+        </div>
+        <hr>
+        <div class="chartWrapper">
+            <p class="stat-heading">List Price Chart</p>
+            <div class="chartContainer">
+                <p class="stat">98%</p>
+                <div style="width: 90%;height: 100px;" id="listPriceChart"></div>
+                <p class="stat" >103.2%</p>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <script>
+    // Define data for the Google Charts line chart (replace with your data)
+    google.charts.setOnLoadCallback(drawGoogleLineChart);
+
+    function drawGoogleLineChart() {
+      const data = google.visualization.arrayToDataTable([
+      ['', 'yesterday', 'today'],
+          ['',  1000,      400],
+          ['',  1170,      460],
+          ['',  660,       1120],
+          ['',  1030,      540]
+      ]);
+
+      const options = {
+        title: '',
+        curveType: 'function',
+        legend: { position: 'top' },
+        hAxis: {
+          title: '',
+          gridlines: { color: 'transparent' } ,
+          textPosition: "none",
+        },
+        vAxis: {
+          title: '',
+          gridlines: { color: 'transparent' },
+          textPosition: "none",
+        }
+      };
+
+      const salesChart = new google.visualization.LineChart(document.getElementById('salesChart'));
+      const listPriceChart = new google.visualization.LineChart(document.getElementById('listPriceChart'));
+
+
+      salesChart.draw(data, options);
+      listPriceChart.draw(data, options);
+
+    }
+  </script>
+</body>
+</html>
