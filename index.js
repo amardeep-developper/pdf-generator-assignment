@@ -8,7 +8,7 @@ const port = 3000;
 
 app.use(express.json());
 
-app.get("/generate-pdf", async (req, res) => {
+app.get("/", async (req, res) => {
   res.send("Welcome to pdf generator");
 });
 
